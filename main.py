@@ -1,5 +1,5 @@
 import config
-from Telas import Menu, Dificuldade
+from telas import Menu, Dificuldade, Jogo
 
 
 while config.is_running:
@@ -7,3 +7,5 @@ while config.is_running:
         Menu.play()
     if config.Tela == 'Dificuldade':
         Dificuldade.play()
+    if config.Tela == 'Jogo':
+        Jogo.jogo()
