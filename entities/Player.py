@@ -1,5 +1,6 @@
 import sprites
 import config
+import sounds
 
 class Player:
     def __init__(self, name, life, velocity):
@@ -24,6 +25,8 @@ class Player:
         self.player_y = config.janela.altura - self.current_sprite.height - 50
 
         self.move_direction = None
+
+        self.jump_sound = sounds.jump_sound
 
     def handle_input(self):
         if config.keyboard.key_down("UP"):
@@ -60,6 +63,7 @@ class Player:
 
         self.current_sprite.set_curr_frame(0)
         self.current_sprite.play()
+        self.jump_sound.play()
 
         self.last_jump_time = current_time
         self.move_direction = None
