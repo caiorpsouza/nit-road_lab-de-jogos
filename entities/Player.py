@@ -20,19 +20,22 @@ class Player:
         self.last_jump_time = 0
         self.jump_cooldown = 0.2
 
+        self.screen_margin_x = (config.janela.largura % self.current_sprite.width) / 2
+        self.screen_margin_y = (config.janela.altura % self.current_sprite.height) / 2
+
         self.player_x = config.janela.largura / 2 - self.current_sprite.width / 2
-        self.player_y = config.janela.altura - self.current_sprite.height - 50
+        self.player_y = config.janela.altura - self.current_sprite.height - self.screen_margin_y
 
         self.move_direction = None
 
     def handle_input(self):
-        if config.keyboard.key_down("UP"):
+        if config.keyboard.key_down("UP") or config.keyboard.key_down("W"):
             self.move_direction = "up"
-        elif config.keyboard.key_down("DOWN"):
+        elif config.keyboard.key_down("DOWN") or config.keyboard.key_down("S"):
             self.move_direction = "down"
-        elif config.keyboard.key_down("LEFT"):
+        elif config.keyboard.key_down("LEFT") or config.keyboard.key_down("A"):
             self.move_direction = "left"
-        elif config.keyboard.key_down("RIGHT"):
+        elif config.keyboard.key_down("RIGHT") or config.keyboard.key_down("D"):
             self.move_direction = "right"
 
     def move(self, current_time):
@@ -73,14 +76,14 @@ class Player:
 
     def limitar_bordas(self):
 
-        if self.player_x < 0:
-            self.player_x = 0
+        if self.player_x <= self.screen_margin_x:
+            self.player_x = self.screen_margin_x
 
-        if self.player_y < 0:
-            self.player_y = 0
+        if self.player_y <= self.screen_margin_y:
+            self.player_y = self.screen_margin_y
 
-        if self.player_x + self.current_sprite.width > config.janela.largura:
-            self.player_x = config.janela.largura - self.current_sprite.width
+        if self.player_x + self.current_sprite.width >= config.janela.largura - self.screen_margin_x:
+            self.player_x = config.janela.largura - self.current_sprite.width - self.screen_margin_x
 
-        if self.player_y + self.current_sprite.height > config.janela.altura:
-            self.player_y = config.janela.altura - self.current_sprite.height
+        if self.player_y + self.current_sprite.height >= config.janela.altura - self.screen_margin_y:
+            self.player_y = config.janela.altura - self.current_sprite.height - self.screen_margin_y
