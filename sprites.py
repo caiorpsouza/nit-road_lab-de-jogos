@@ -43,18 +43,39 @@ player_right = sprite.Sprite("images/player/jogador-right.png", 4)
 player_left = sprite.Sprite("images/player/jogador-left.png", 4)
 player_down = sprite.Sprite("images/player/jogador-down.png", 4)
 
+player_crushing = sprite.Sprite('images/player/jogador-crushing.png', 4)
+player_falling = sprite.Sprite('images/player/jogador-falling2.png', 5)
+
 player_up.set_total_duration(333)
 player_right.set_total_duration(333)
 player_left.set_total_duration(333)
 player_down.set_total_duration(333)
+
+player_crushing.set_total_duration(800)
+player_falling.set_total_duration(800)
 
 # Desabilitar loop para animação tocar apenas uma vez
 player_up.set_loop(False)
 player_right.set_loop(False)
 player_left.set_loop(False)
 player_down.set_loop(False)
+player_crushing.set_loop(False)
+player_falling.set_loop(False)
 
 player_up.pause()
 player_right.pause()
 player_left.pause()
 player_down.pause()
+
+#CARROS
+
+yellow_car = sprite.Sprite('images/obstacles/yellow_car_left.png', 2)
+yellow_car.set_total_duration(500)
+police_car = sprite.Sprite('images/obstacles/police_car_left.png', 2)
+police_car.set_total_duration(500)
+red_car = sprite.Sprite('images/obstacles/red_car_left.png', 2)
+red_car.set_total_duration(500)
+
+#BURACO
+
+buraco = sprite.Sprite('images/obstacles/buraco.png')
