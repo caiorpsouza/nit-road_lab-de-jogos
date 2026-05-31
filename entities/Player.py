@@ -19,31 +19,33 @@ class Player:
         self.size_jump_vertical = self.player_up.height
 
         self.last_jump_time = 0
-        self.jump_cooldown = 0.2
+        self.jump_cooldown = 0.4
 
         self.player_x = config.janela.largura / 2 - self.current_sprite.width / 2
         self.player_y = config.janela.altura - self.current_sprite.height - 50
 
         self.move_direction = None
 
-        self.jump_sound = sounds.jump_sound
+        self.jump_sound = sounds.sons["jump"]
 
     def handle_input(self):
-        if config.keyboard.key_down("UP"):
+        if config.keyboard.key_pressed("UP"):
             self.move_direction = "up"
-        elif config.keyboard.key_down("DOWN"):
+        elif config.keyboard.key_pressed("DOWN"):
             self.move_direction = "down"
-        elif config.keyboard.key_down("LEFT"):
+        elif config.keyboard.key_pressed("LEFT"):
             self.move_direction = "left"
-        elif config.keyboard.key_down("RIGHT"):
+        elif config.keyboard.key_pressed("RIGHT"):
             self.move_direction = "right"
 
     def move(self, current_time):
 
-        if not self.move_direction:
+        if (current_time - self.last_jump_time) < self.jump_cooldown:
             return
 
-        if (current_time - self.last_jump_time) < self.jump_cooldown:
+        self.handle_input()
+
+        if not self.move_direction:
             return
 
         movements = {
