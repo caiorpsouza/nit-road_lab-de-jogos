@@ -69,11 +69,11 @@ player_down.pause()
 
 #CARROS
 
-yellow_car = sprite.Sprite('images/obstacles/yellow_car_left.png', 2)
+yellow_car = sprite.Sprite('images/obstacles/yellow_car_left_new.png', 2)
 yellow_car.set_total_duration(500)
-police_car = sprite.Sprite('images/obstacles/police_car_left.png', 2)
+police_car = sprite.Sprite('images/obstacles/police_car_left_new.png', 2)
 police_car.set_total_duration(500)
-red_car = sprite.Sprite('images/obstacles/red_car_left.png', 2)
+red_car = sprite.Sprite('images/obstacles/red_car_left_new.png', 2)
 red_car.set_total_duration(500)
 
 #BURACO

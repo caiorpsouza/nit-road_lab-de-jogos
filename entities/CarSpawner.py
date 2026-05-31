@@ -53,28 +53,28 @@ class CarSpawner:
 
     def spawnRedCar(self):
         if self.side == 'right':
-            novo_carro = Carro(sprite.Sprite('images/obstacles/red_car_right.png', 2), self.x, self.y - sprites.red_car.height/2, random.randint(500, 800))
+            novo_carro = Carro(sprite.Sprite('images/obstacles/red_car_right_new.png', 2), self.x, self.y - sprites.red_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x, self.y - sprites.red_car.height/2)
         else:
-            novo_carro =Carro(sprite.Sprite('images/obstacles/red_car_left.png', 2), self.x, self.y - sprites.red_car.height/2, random.randint(500, 800))
+            novo_carro =Carro(sprite.Sprite('images/obstacles/red_car_left_new.png', 2), self.x, self.y - sprites.red_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x - sprites.red_car.width, self.y - sprites.red_car.height/2)
         self.carros.append(novo_carro)
 
     def spawnYellowCar(self):
         if self.side == 'right':
-            novo_carro = Carro(sprite.Sprite('images/obstacles/yellow_car_right.png', 2), self.x, self.y - sprites.yellow_car.height/2, random.randint(500, 800))
+            novo_carro = Carro(sprite.Sprite('images/obstacles/yellow_car_right_new.png', 2), self.x, self.y - sprites.yellow_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x, self.y - sprites.yellow_car.height/2)
         else:
-            novo_carro =Carro(sprite.Sprite('images/obstacles/yellow_car_left.png', 2), self.x, self.y - sprites.yellow_car.height/2, random.randint(500, 800))
+            novo_carro =Carro(sprite.Sprite('images/obstacles/yellow_car_left_new.png', 2), self.x, self.y - sprites.yellow_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x - sprites.yellow_car.width, self.y - sprites.yellow_car.height/2)
         self.carros.append(novo_carro)
     
     def spawnPoliceCar(self):
         if self.side == 'right':
-            novo_carro = Carro(sprite.Sprite('images/obstacles/police_car_right.png', 2), self.x, self.y - sprites.police_car.height/2, random.randint(500, 800))
+            novo_carro = Carro(sprite.Sprite('images/obstacles/police_car_right_new.png', 2), self.x, self.y - sprites.police_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x, self.y - sprites.police_car.height/2)
         else:
-            novo_carro =Carro(sprite.Sprite('images/obstacles/police_car_left.png', 2), self.x, self.y - sprites.police_car.height/2, random.randint(500, 800))
+            novo_carro =Carro(sprite.Sprite('images/obstacles/police_car_left_new.png', 2), self.x, self.y - sprites.police_car.height/2, random.randint(500, 800))
             novo_carro.sprite.set_position(novo_carro.x - sprites.police_car.width, self.y - sprites.police_car.height/2)
         self.carros.append(novo_carro)
 
