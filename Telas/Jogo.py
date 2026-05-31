@@ -19,7 +19,6 @@ def jogo():
             config.Tela = "Menu"
             return
 
-        player.handle_input()
         player.move(tempo)
         player.update()
         player.draw()
