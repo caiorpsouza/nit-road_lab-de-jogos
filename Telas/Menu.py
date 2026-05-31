@@ -1,9 +1,12 @@
 from PPlay import *
+from PPlay.sound import Music
 import config
 import sprites
 import sounds
 
 def play() :
+    musica = Music('sounds/Brisa_na_Varanda.mp3')
+    musica.play()
     sounds.tocar_menu()
     
     while True:

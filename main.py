@@ -1,5 +1,5 @@
 import config
-from telas import Menu, Dificuldade, Jogo
+from Telas import Menu, Dificuldade, Jogo
 
 
 while config.is_running:

@@ -38,21 +38,28 @@ background_game = sprite.Sprite("images/backgrounds/fase1.png")
 background_game.set_position(0, 0)
 
 # PLAYER
-player_up = sprite.Sprite("images/player/player-up.png", 4)
-player_right = sprite.Sprite("images/player/player-right.png", 4)
-player_left = sprite.Sprite("images/player/player-left.png", 4)
-player_down = sprite.Sprite("images/player/player-down.png", 4)
+player_up = sprite.Sprite("images/player/jogador-up.png", 4)
+player_right = sprite.Sprite("images/player/jogador-right.png", 4)
+player_left = sprite.Sprite("images/player/jogador-left.png", 4)
+player_down = sprite.Sprite("images/player/jogador-down.png", 4)
+player_crushing = sprite.Sprite("images/player/jogador-crushing.png", 4)
+player_falling = sprite.Sprite("images/player/jogador-falling.png", 4)
 
 player_up.set_total_duration(333)
 player_right.set_total_duration(333)
 player_left.set_total_duration(333)
 player_down.set_total_duration(333)
 
+player_crushing.set_total_duration(800)
+player_falling.set_total_duration(800)
+
 # Desabilitar loop para animação tocar apenas uma vez
 player_up.set_loop(False)
 player_right.set_loop(False)
 player_left.set_loop(False)
 player_down.set_loop(False)
+player_crushing.set_loop(False)
+player_falling.set_loop(False)
 
 player_up.pause()
 player_right.pause()
@@ -65,3 +72,16 @@ volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 1)
 volume_on.set_position(config.janela.largura - volume_on.width - 10, 10)
 volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
 volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
+
+#CARROS
+
+yellow_car = sprite.Sprite('images/obstacles/yellow_car_left_new.png', 2)
+yellow_car.set_total_duration(500)
+police_car = sprite.Sprite('images/obstacles/police_car_left_new.png', 2)
+police_car.set_total_duration(500)
+red_car = sprite.Sprite('images/obstacles/red_car_left_new.png', 2)
+red_car.set_total_duration(500)
+
+#BURACO
+
+buraco = sprite.Sprite('images/obstacles/buraco.png')
