@@ -2,10 +2,13 @@ from PPlay import *
 from PPlay.sound import Music
 import config
 import sprites
+import sounds
 
 def play() :
     musica = Music('sounds/Brisa_na_Varanda.mp3')
     musica.play()
+    sounds.tocar_menu()
+    
     while True:
 
         #Clique no botão Sair
@@ -16,14 +19,26 @@ def play() :
             config.Tela = 'Dificuldade'
             return 0
         if (config.janela.mouse.button_down(1) and config.janela.mouse.is_over_object(sprites.play_btn)):
+            sounds.parar_menu()
             config.Tela = 'Jogo'
             return 0
-
+        
+        if (config.janela.mouse.button_down(1) and (config.janela.mouse.is_over_object(sprites.volume_on) or config.janela.mouse.is_over_object(sprites.volume_off))):
+            config.volume = not config.volume
+            sounds.aplicar_volume()
+            
         sprites.background_menu.draw()
         sprites.title.draw()
         sprites.play_btn.draw()
         sprites.diff_btn.draw()
         sprites.scores_btn.draw()
         sprites.quit_btn.draw()
+
+        if config.volume:
+            sprites.volume_on.draw()
+        else:
+            sprites.volume_off.draw()
+
+
 
         config.janela.update()

@@ -37,6 +37,7 @@ def jogo():
         player.check_atropelamento(car_spawner4)
         player.caiu_morreu(buracos)
         player.handle_input()
+
         player.move(tempo)
         player.update()
         player.draw()

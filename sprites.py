@@ -42,9 +42,8 @@ player_up = sprite.Sprite("images/player/jogador-up.png", 4)
 player_right = sprite.Sprite("images/player/jogador-right.png", 4)
 player_left = sprite.Sprite("images/player/jogador-left.png", 4)
 player_down = sprite.Sprite("images/player/jogador-down.png", 4)
-
-player_crushing = sprite.Sprite('images/player/jogador-crushing.png', 4)
-player_falling = sprite.Sprite('images/player/jogador-falling2.png', 5)
+player_crushing = sprite.Sprite("images/player/jogador-crushing.png", 4)
+player_falling = sprite.Sprite("images/player/jogador-falling.png", 4)
 
 player_up.set_total_duration(333)
 player_right.set_total_duration(333)
@@ -66,6 +65,13 @@ player_up.pause()
 player_right.pause()
 player_left.pause()
 player_down.pause()
+
+# Volume icon
+# VOLUME 
+volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 1)
+volume_on.set_position(config.janela.largura - volume_on.width - 10, 10)
+volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
+volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
 #CARROS
 

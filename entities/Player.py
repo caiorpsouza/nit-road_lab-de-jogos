@@ -1,5 +1,6 @@
 import sprites
 import config
+import sounds
 
 class Player:
     def __init__(self, name, life, velocity):
@@ -20,7 +21,7 @@ class Player:
         self.size_jump_vertical = self.player_up.height
 
         self.last_jump_time = 0
-        self.jump_cooldown = 0.2
+        self.jump_cooldown = 0.4
 
         self.screen_margin_x = (config.janela.largura % self.current_sprite.width) / 2
         self.screen_margin_y = (config.janela.altura % self.current_sprite.height) / 2
@@ -50,10 +51,12 @@ class Player:
 
     def move(self, current_time):
 
-        if not self.move_direction:
+        if (current_time - self.last_jump_time) < self.jump_cooldown:
             return
 
-        if (current_time - self.last_jump_time) < self.jump_cooldown:
+        self.handle_input()
+
+        if not self.move_direction:
             return
 
         movements = {
@@ -73,6 +76,7 @@ class Player:
 
         self.current_sprite.set_curr_frame(0)
         self.current_sprite.play()
+        self.jump_sound.play()
 
         self.last_jump_time = current_time
         self.move_direction = None
