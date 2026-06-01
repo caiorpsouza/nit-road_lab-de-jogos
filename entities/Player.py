@@ -38,17 +38,19 @@ class Player:
         self.reespawn_cd = 1
         self.reespawn_timer = 0
 
-
+    def get_lane(self):
+        altura_lane = sprites.fase1.height / 16
+        return round(self.player_y / altura_lane) + 1
 
     def handle_input(self):
         if not self.crushing and not self.falling:
-            if config.keyboard.key_down("UP") or config.keyboard.key_down("W"):
+            if config.keyboard.key_pressed("UP") or config.keyboard.key_pressed("W"):
                 self.move_direction = "up"
-            elif config.keyboard.key_down("DOWN") or config.keyboard.key_down("S"):
+            elif config.keyboard.key_pressed("DOWN") or config.keyboard.key_pressed("S"):
                 self.move_direction = "down"
-            elif config.keyboard.key_down("LEFT") or config.keyboard.key_down("A"):
+            elif config.keyboard.key_pressed("LEFT") or config.keyboard.key_pressed("A"):
                 self.move_direction = "left"
-            elif config.keyboard.key_down("RIGHT") or config.keyboard.key_down("D"):
+            elif config.keyboard.key_pressed("RIGHT") or config.keyboard.key_pressed("D"):
                 self.move_direction = "right"
 
     def move(self, current_time):
@@ -113,13 +115,11 @@ class Player:
     def check_atropelamento(self, carros):
         if not self.crushing and not self.falling:
             for carro in carros.carros:
-                #Checagem apenas se o player se encontra na rua do carro
-                if carro.y + carro.sprite.height/2 >= self.player_y and carro.y + carro.sprite.height/2 <= self.player_y + self.current_sprite.height:
-                    if self.current_sprite.collided(carro.sprite):
-                        self.current_sprite = self.player_crushing
-                        self.current_sprite.set_curr_frame(0)
-                        self.crushing = True
-        
+                if self.current_sprite.collided(carro.sprite):
+                    self.current_sprite = self.player_crushing
+                    self.current_sprite.set_curr_frame(0)
+                    self.crushing = True
+
         if self.crushing:
             if self.current_sprite.get_curr_frame() == 3:
                 self.crushing = False

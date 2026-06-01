@@ -63,23 +63,32 @@ def jogo():
 
         carros_atras = []
         carros_na_frente = []
+        carros_normais = []
 
         centro_player = player.player_y + player.current_sprite.height / 2
 
+          
         for veiculo in veiculos:
             if veiculo.lane == player.get_lane():
                 player.check_atropelamento(veiculo)
 
             # Isso daqui é para mudar a sobreposicao de player e carro, para o player ficar atrás do carro se ele estiver atrás e na frente se ele estiver na frente.
-            for carro in veiculo.carros:
-                centro_carro = carro.sprite.y + carro.sprite.height / 2
-                if centro_player < centro_carro:
-                    carros_na_frente.append(carro)
-                else:
-                    carros_atras.append(carro)
+            if veiculo.lane == player.get_lane() - 1 or veiculo.lane == player.get_lane() + 1:
+                for carro in veiculo.carros:
+                    centro_carro = carro.sprite.y + carro.sprite.height / 2
 
+                    if centro_player < centro_carro:
+                        carros_na_frente.append(carro)
+                    else:
+                        carros_atras.append(carro)
+            else:
+                carros_normais.extend(veiculo.carros)
 
         player.update()
+
+        # Carros que nao estao na mesma lane do player
+        for carro in carros_normais:
+            carro.draw()
 
         # Carro atras do player
         for carro in carros_atras:

@@ -5,16 +5,18 @@ import sprites
 import random
 
 class CarSpawner:
-    def __init__(self, lane, side, vehicles, velocity):
+    def __init__(self, lane, side, vehicles_types, velocity):
         self.lane = lane
         self.carros = []
         self.car_speed = velocity
         self.side = side
-        self.vehicles = vehicles
+        self.vehicles_types = vehicles_types
+        self.spawn_clearance = max(sprites.VEHICLES[tipo].width for tipo in self.vehicles_types)
 
         self.spawn_cooldown = self._next_spawn_cooldown()
         self.spawn_timer = 0
-        self.spawn_margin = random.randint(-10, 10) / 100
+        # Comentando pois já tem o spawn_cooldown
+        # self.spawn_margin = random.randint(-10, 10) / 100
 
         if self.side == 'right':
             self.x = config.janela.largura
@@ -24,18 +26,24 @@ class CarSpawner:
         self.y = sprites.fase1.height / 16 * (self.lane - 1)
 
     def _next_spawn_cooldown(self):
-        return random.randint(35, 60) / 10
+        return random.randint(30, 55) / 10
+
+    def _pode_spawnar(self):
+        if self.side == 'right':
+            return all(carro.sprite.x + carro.sprite.width <= config.janela.largura - self.spawn_clearance for carro in self.carros)
+
+        return all(carro.sprite.x >= self.spawn_clearance for carro in self.carros)
     
 
     def loop(self):
         self.spawn_timer += config.janela.delta_time()
 
-        if self.spawn_timer >= self.spawn_cooldown + self.spawn_margin:
-            self.spawn_margin = random.randint(-10, 10) / 100
+        if self.spawn_timer >= self.spawn_cooldown and self._pode_spawnar(): #+ self.spawn_margin:
+            # self.spawn_margin = random.randint(-10, 10) / 100
             self.spawn_cooldown = self._next_spawn_cooldown()
             self.spawn_timer = 0
 
-            veiculo_escolhido = random.choice(self.vehicles)
+            veiculo_escolhido = random.choice(self.vehicles_types)
             self.spawnVehicle(veiculo_escolhido)
 
         for carro in self.carros:
@@ -53,6 +61,9 @@ class CarSpawner:
             else:
                 carro.sprite.x += carro.speed * config.janela.delta_time()
             carro.sprite.update()
+
+    def draw(self):
+        for carro in self.carros:
             carro.sprite.draw()
 
     def spawnVehicle(self, tipo):
@@ -63,7 +74,7 @@ class CarSpawner:
                 sprite.Sprite(f'images/vehicles/{tipo}_right_new.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
-                random.randint(500, 800)
+                self.car_speed  
             )
 
             novo_carro.sprite.set_position(
@@ -76,7 +87,7 @@ class CarSpawner:
                 sprite.Sprite(f'images/vehicles/{tipo}_left_new.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
-                random.randint(500, 800)
+                self.car_speed
             )
 
             novo_carro.sprite.set_position(
