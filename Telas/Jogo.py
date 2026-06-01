@@ -43,22 +43,16 @@ def jogo():
             config.Tela = "Menu"
             return
         
-
-        
-
         Buraco.buraco_drawer(buracos)
 
         for veiculo in veiculos:
             veiculo.loop()
-
-        for veiculo in veiculos:
-            player.check_atropelamento(veiculo)
         
         player.caiu_morreu(buracos)
-        player.handle_input()
 
         player.move(tempo)
 
+        # Verificar se o player chegou ao topo da tela para avançar de fase
         if player.player_y + player.current_sprite.height <= 0:
             if config.fase < 2:
                 config.fase += 1
@@ -67,8 +61,35 @@ def jogo():
             else:
                 player.volta_pro_inicio()
 
+        carros_atras = []
+        carros_na_frente = []
+
+        centro_player = player.player_y + player.current_sprite.height / 2
+
+        for veiculo in veiculos:
+            if veiculo.lane == player.get_lane():
+                player.check_atropelamento(veiculo)
+
+            # Isso daqui é para mudar a sobreposicao de player e carro, para o player ficar atrás do carro se ele estiver atrás e na frente se ele estiver na frente.
+            for carro in veiculo.carros:
+                centro_carro = carro.sprite.y + carro.sprite.height / 2
+                if centro_player < centro_carro:
+                    carros_na_frente.append(carro)
+                else:
+                    carros_atras.append(carro)
+
+
         player.update()
+
+        # Carro atras do player
+        for carro in carros_atras:
+            carro.draw()
+
         player.draw()
+
+        # Carro na frente do player
+        for carro in carros_na_frente:
+            carro.draw()
 
 
 
