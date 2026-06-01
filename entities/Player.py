@@ -95,8 +95,9 @@ class Player:
         if self.player_x <= self.screen_margin_x:
             self.player_x = self.screen_margin_x
 
-        if self.player_y <= self.screen_margin_y:
-            self.player_y = self.screen_margin_y
+        # Comentando para deixar o player ir para proxima fase
+        # if self.player_y <= self.screen_margin_y:
+        #     self.player_y = self.screen_margin_y
 
         if self.player_x + self.current_sprite.width >= config.janela.largura - self.screen_margin_x:
             self.player_x = config.janela.largura - self.current_sprite.width - self.screen_margin_x
