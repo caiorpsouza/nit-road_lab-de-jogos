@@ -1,27 +1,39 @@
-import random
-
+import fases
 import sounds
 import config
 import sprites
 from entities import Player, CarSpawner, Buraco
 
+
+def carregar_fase(numero_fase):
+    fase = fases.phases[numero_fase - 1]
+    buracos = Buraco.buraco_generator(fase["buracos"])
+    veiculos = []
+
+    for spawner_info in fase["spawners"]:
+        veiculo_spawner = CarSpawner.CarSpawner(
+            spawner_info["lane"],
+            spawner_info["side"],
+            spawner_info["vehicles"],
+            spawner_info["velocity"],
+        )
+        veiculos.append(veiculo_spawner)
+
+    return buracos, veiculos
+
 def jogo():
    
     sounds.tocar_game()
-    buracos = Buraco.buraco_generator(3)
+    config.fase = 1
     player = Player.Player("Player1", 3, 100)
-
-    car_spawner1 = CarSpawner.CarSpawner(0, 230, 'left')
-    car_spawner2 = CarSpawner.CarSpawner(0, 330, 'left')
-    car_spawner3 = CarSpawner.CarSpawner(config.janela.largura, 570, 'right')
-    car_spawner4 = CarSpawner.CarSpawner(config.janela.largura, 690, 'right')
+    buracos, veiculos = carregar_fase(config.fase)
 
 
     tempo = 0
     while True:
 
         config.janela.clear()
-        sprites.background_game.draw()
+        fases.phases[config.fase - 1]["background"].draw()
 
         dt = config.janela.delta_time()
         tempo += dt
@@ -32,21 +44,29 @@ def jogo():
             return
         
 
+        
+
         Buraco.buraco_drawer(buracos)
 
-        car_spawner1.loop()
-        car_spawner2.loop()
-        car_spawner3.loop()
-        car_spawner4.loop()
+        for veiculo in veiculos:
+            veiculo.loop()
 
-        player.check_atropelamento(car_spawner1)
-        player.check_atropelamento(car_spawner2)
-        player.check_atropelamento(car_spawner3)
-        player.check_atropelamento(car_spawner4)
+        for veiculo in veiculos:
+            player.check_atropelamento(veiculo)
+        
         player.caiu_morreu(buracos)
         player.handle_input()
 
         player.move(tempo)
+
+        if player.player_y + player.current_sprite.height <= 0:
+            if config.fase < 2:
+                config.fase += 1
+                buracos, veiculos = carregar_fase(config.fase)
+                player.volta_pro_inicio()
+            else:
+                player.volta_pro_inicio()
+
         player.update()
         player.draw()
 

@@ -34,14 +34,17 @@ background_menu = sprite.Sprite("images/backgrounds/background-tarde.png")
 background_menu.set_position(0,0)
 background_diff = sprite.Sprite("images/backgrounds/background-dia.png")
 background_diff.set_position(0, 0)
-background_game = sprite.Sprite("images/backgrounds/fase1.png")
-background_game.set_position(0, 0)
+fase1 = sprite.Sprite("images/backgrounds/fase1.png")
+fase1.set_position(0, 0)
+fase2 = sprite.Sprite("images/backgrounds/fase2.png")
+fase2.set_position(0, 0)
+
 
 # PLAYER
-player_up = sprite.Sprite("images/player/jogador-up.png", 4)
-player_right = sprite.Sprite("images/player/jogador-right.png", 4)
-player_left = sprite.Sprite("images/player/jogador-left.png", 4)
-player_down = sprite.Sprite("images/player/jogador-down.png", 4)
+player_up = sprite.Sprite("images/player/player-up.png", 4)
+player_right = sprite.Sprite("images/player/player-right.png", 4)
+player_left = sprite.Sprite("images/player/player-left.png", 4)
+player_down = sprite.Sprite("images/player/player-down.png", 4)
 player_crushing = sprite.Sprite("images/player/jogador-crushing.png", 4)
 player_falling = sprite.Sprite("images/player/jogador-falling.png", 4)
 
@@ -75,12 +78,18 @@ volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
 #CARROS
 
-yellow_car = sprite.Sprite('images/obstacles/yellow_car_left_new.png', 2)
+
+yellow_car = sprite.Sprite('images/vehicles/yellow_car_left_new.png', 2)
 yellow_car.set_total_duration(500)
-police_car = sprite.Sprite('images/obstacles/police_car_left_new.png', 2)
+police_car = sprite.Sprite('images/vehicles/police_car_left_new.png', 2)
 police_car.set_total_duration(500)
-red_car = sprite.Sprite('images/obstacles/red_car_left_new.png', 2)
+red_car = sprite.Sprite('images/vehicles/red_car_left_new.png', 2)
 red_car.set_total_duration(500)
+VEHICLES = {
+    'yellow_car': yellow_car,
+    'police_car': police_car,
+    'red_car': red_car
+}
 
 #BURACO
 
