@@ -23,6 +23,8 @@ class Player:
         self.last_jump_time = 0
         self.jump_cooldown = 0.4
 
+        self.jump_sound = sounds.sons["jump"]
+
         self.screen_margin_x = (config.janela.largura % self.current_sprite.width) / 2
         self.screen_margin_y = (config.janela.altura % self.current_sprite.height) / 2
 
@@ -76,7 +78,7 @@ class Player:
 
         self.current_sprite.set_curr_frame(0)
         self.current_sprite.play()
-        self.jump_sound.play()
+        self.jump_sound.play()  
 
         self.last_jump_time = current_time
         self.move_direction = None
