@@ -3,8 +3,8 @@ import config
 
 sons = {
     "jump": sound.Sound("sounds/jump-sound.ogg"),
-    "menu_sound": sound.Sound("sounds/Brisa_na_Varanda.mp3"),
-    "game_sound": sound.Sound("sounds/The_Rush_at_Avenida.mp3"),
+    "menu_sound": sound.Sound("sounds/bossa-sound.ogg"),
+    "game_sound": sound.Sound("sounds/The_Rush_at_Avenida.ogg"),
 }
 
 menu_tocando = False
