@@ -12,5 +12,7 @@ is_running = True
 
 volume = True
 
+fase = 1
+
 
     
