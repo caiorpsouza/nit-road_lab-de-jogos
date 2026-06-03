@@ -130,8 +130,8 @@ class Player:
             for buraco in buracos:
                 if buraco.y > self.player_y and (self.player_x + self.current_sprite.width/2 > buraco.x and self.player_x < buraco.x + buraco.sprite.width - self.current_sprite.width/2):
                     if self.current_sprite.collided(buraco.sprite):
-                        self.player_y = buraco.y - self.current_sprite.height/2
-                        self.player_x = buraco.x
+                        self.player_y = buraco.y - buraco.sprite.height/3
+                        self.player_x = buraco.x + buraco.sprite.width/3
                         self.current_sprite = self.player_falling
                         self.current_sprite.set_curr_frame(0)
                         self.falling = True

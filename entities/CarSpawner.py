@@ -14,7 +14,7 @@ class CarSpawner:
         self.spawn_clearance = max(sprites.VEHICLES[tipo].width for tipo in self.vehicles_types)
 
         self.spawn_cooldown = self._next_spawn_cooldown()
-        self.spawn_timer = 0
+        self.spawn_timer = 5
         # Comentando pois já tem o spawn_cooldown
         # self.spawn_margin = random.randint(-10, 10) / 100
 
