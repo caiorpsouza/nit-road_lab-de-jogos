@@ -54,7 +54,7 @@ def jogo():
 
         # Verificar se o player chegou ao topo da tela para avançar de fase
         if player.player_y + player.current_sprite.height <= 0:
-            if config.fase < 2:
+            if config.fase < 3:
                 config.fase += 1
                 buracos, veiculos = carregar_fase(config.fase)
                 player.volta_pro_inicio()
@@ -63,7 +63,6 @@ def jogo():
 
         carros_atras = []
         carros_na_frente = []
-        carros_normais = []
 
         centro_player = player.player_y + player.current_sprite.height / 2
 
@@ -71,24 +70,15 @@ def jogo():
         for veiculo in veiculos:
             if veiculo.lane == player.get_lane():
                 player.check_atropelamento(veiculo)
+            for carro in veiculo.carros:
+                centro_carro = carro.sprite.y + carro.sprite.height / 2
 
-            # Isso daqui é para mudar a sobreposicao de player e carro, para o player ficar atrás do carro se ele estiver atrás e na frente se ele estiver na frente.
-            if veiculo.lane == player.get_lane() - 1 or veiculo.lane == player.get_lane() + 1:
-                for carro in veiculo.carros:
-                    centro_carro = carro.sprite.y + carro.sprite.height / 2
-
-                    if centro_player < centro_carro:
-                        carros_na_frente.append(carro)
-                    else:
-                        carros_atras.append(carro)
-            else:
-                carros_normais.extend(veiculo.carros)
+                if centro_player < centro_carro:
+                    carros_na_frente.append(carro)
+                else:
+                    carros_atras.append(carro)
 
         player.update()
-
-        # Carros que nao estao na mesma lane do player
-        for carro in carros_normais:
-            carro.draw()
 
         # Carro atras do player
         for carro in carros_atras:

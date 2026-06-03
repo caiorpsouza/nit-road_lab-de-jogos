@@ -38,6 +38,8 @@ fase1 = sprite.Sprite("images/backgrounds/fase1.png")
 fase1.set_position(0, 0)
 fase2 = sprite.Sprite("images/backgrounds/fase2.png")
 fase2.set_position(0, 0)
+fase3= sprite.Sprite("images/backgrounds/fase3.png")
+fase3.set_position(0, 0)
 
 
 # PLAYER
@@ -77,15 +79,18 @@ volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
 volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
 #CARROS
+vendedor_de_cana = sprite.Sprite("images/vehicles/vendedor_de_cana_left.png")
+vendedor_de_picole = sprite.Sprite("images/vehicles/vendedor_de_picole_left.png")
 
-ciclista_sexy_right = sprite.Sprite('images/vehicles/ciclista-sexy_right_new.png',2)
-ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left_new.png',2)
+ciclista_sexy_right = sprite.Sprite('images/vehicles/ciclista-sexy_right.png',2)
+ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left.png',2)
 
-yellow_car = sprite.Sprite('images/vehicles/yellow_car_left_new.png', 2)
+
+yellow_car = sprite.Sprite('images/vehicles/yellow_car_left.png', 2)
 yellow_car.set_total_duration(500)
-police_car = sprite.Sprite('images/vehicles/police_car_left_new.png', 2)
+police_car = sprite.Sprite('images/vehicles/police_car_left.png', 2)
 police_car.set_total_duration(500)
-red_car = sprite.Sprite('images/vehicles/red_car_left_new.png', 2)
+red_car = sprite.Sprite('images/vehicles/red_car_left.png', 2)
 red_car.set_total_duration(500)
 
 VEHICLES = {
@@ -93,6 +98,8 @@ VEHICLES = {
     'police_car': police_car,
     'red_car': red_car,
     'ciclista-sexy': ciclista_sexy_right,
+    'vendedor_de_cana': vendedor_de_cana,
+    'vendedor_de_picole': vendedor_de_picole
 }
 
 #BURACO

@@ -38,8 +38,7 @@ class CarSpawner:
     def loop(self):
         self.spawn_timer += config.janela.delta_time()
 
-        if self.spawn_timer >= self.spawn_cooldown and self._pode_spawnar(): #+ self.spawn_margin:
-            # self.spawn_margin = random.randint(-10, 10) / 100
+        if self.spawn_timer >= self.spawn_cooldown and self._pode_spawnar():
             self.spawn_cooldown = self._next_spawn_cooldown()
             self.spawn_timer = 0
 
@@ -71,7 +70,7 @@ class CarSpawner:
 
         if self.side == 'right':
             novo_carro = Carro(
-                sprite.Sprite(f'images/vehicles/{tipo}_right_new.png', 2),
+                sprite.Sprite(f'images/vehicles/{tipo}_right.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
                 self.car_speed,
@@ -85,7 +84,7 @@ class CarSpawner:
 
         else:
             novo_carro = Carro(
-                sprite.Sprite(f'images/vehicles/{tipo}_left_new.png', 2),
+                sprite.Sprite(f'images/vehicles/{tipo}_left.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
                 self.car_speed,

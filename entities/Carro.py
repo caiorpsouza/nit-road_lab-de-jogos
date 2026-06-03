@@ -4,8 +4,7 @@ class Carro:
         self.sprite = sprite
         self.x = x
         self.y = y
-        self.speed= speed
-
+        self.speed = speed
         self.sprite.set_total_duration(loop)
     
     def set_position(self, x, y):

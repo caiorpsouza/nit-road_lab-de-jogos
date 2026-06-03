@@ -21,7 +21,7 @@ class Player:
         self.size_jump_vertical = self.player_up.height
 
         self.last_jump_time = 0
-        self.jump_cooldown = 0.4
+        self.jump_cooldown = 0.2
 
         self.jump_sound = sounds.sons["jump"]
 
