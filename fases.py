@@ -7,8 +7,8 @@ phases = [
         "background": sprites.fase1,
         "spawners": [
             # Essas lanes sao das bicicletas
-            # {"lane": 3, "side": "left", "vehicles": ["red_car", "yellow_car", "yellow_car"], "velocity": 150},
-            # {"lane": 4, "side": "left", "vehicles": ["red_car"], "velocity": 150},
+            {"lane": 3, "side": "left", "vehicles": ["ciclista-sexy"], "velocity": 100},
+            {"lane": 4, "side": "right", "vehicles": ["ciclista-sexy"], "velocity": 100},
             {"lane": 5, "side": "left", "vehicles": ["red_car", "yellow_car"], "velocity": 300},
             {"lane": 6, "side": "left", "vehicles": ["red_car"], "velocity": 250},
             {"lane": 7, "side": "right", "vehicles": ["yellow_car", "police_car"], "velocity": 300},

@@ -74,7 +74,8 @@ class CarSpawner:
                 sprite.Sprite(f'images/vehicles/{tipo}_right_new.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
-                self.car_speed  
+                self.car_speed,
+                500
             )
 
             novo_carro.sprite.set_position(
@@ -87,7 +88,8 @@ class CarSpawner:
                 sprite.Sprite(f'images/vehicles/{tipo}_left_new.png', 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
-                self.car_speed
+                self.car_speed,
+                500
             )
 
             novo_carro.sprite.set_position(

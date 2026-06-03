@@ -78,6 +78,8 @@ volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
 #CARROS
 
+ciclista_sexy_right = sprite.Sprite('images/vehicles/ciclista-sexy_right_new.png',2)
+ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left_new.png',2)
 
 yellow_car = sprite.Sprite('images/vehicles/yellow_car_left_new.png', 2)
 yellow_car.set_total_duration(500)
@@ -85,10 +87,12 @@ police_car = sprite.Sprite('images/vehicles/police_car_left_new.png', 2)
 police_car.set_total_duration(500)
 red_car = sprite.Sprite('images/vehicles/red_car_left_new.png', 2)
 red_car.set_total_duration(500)
+
 VEHICLES = {
     'yellow_car': yellow_car,
     'police_car': police_car,
-    'red_car': red_car
+    'red_car': red_car,
+    'ciclista-sexy': ciclista_sexy_right,
 }
 
 #BURACO
