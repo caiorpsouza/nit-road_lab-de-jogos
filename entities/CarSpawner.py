@@ -37,7 +37,6 @@ class CarSpawner:
 
     def loop(self):
         self.spawn_timer += config.janela.delta_time()
-
         if self.spawn_timer >= self.spawn_cooldown and self._pode_spawnar():
             self.spawn_cooldown = self._next_spawn_cooldown()
             self.spawn_timer = 0
@@ -67,7 +66,6 @@ class CarSpawner:
 
     def spawnVehicle(self, tipo):
         sprite_ref = sprites.VEHICLES[tipo]
-
         if self.side == 'right':
             novo_carro = Carro(
                 sprite.Sprite(f'images/vehicles/{tipo}_right.png', 2),

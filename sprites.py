@@ -71,27 +71,30 @@ player_right.pause()
 player_left.pause()
 player_down.pause()
 
-# Volume icon
 # VOLUME 
 volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 1)
 volume_on.set_position(config.janela.largura - volume_on.width - 10, 10)
 volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
 volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
-#CARROS
-vendedor_de_cana = sprite.Sprite("images/vehicles/vendedor_de_cana_left.png")
-vendedor_de_picole = sprite.Sprite("images/vehicles/vendedor_de_picole_left.png")
+#VENDEDORES
+vendedor_de_cana = sprite.Sprite("images/vehicles/vendedor_de_cana_left.png", 2)
+vendedor_de_picole = sprite.Sprite("images/vehicles/vendedor_de_picole_left.png", 2)
 
+#CICLISTAS
 ciclista_sexy_right = sprite.Sprite('images/vehicles/ciclista-sexy_right.png',2)
 ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left.png',2)
 
-
+#CARROS
 yellow_car = sprite.Sprite('images/vehicles/yellow_car_left.png', 2)
 yellow_car.set_total_duration(500)
 police_car = sprite.Sprite('images/vehicles/police_car_left.png', 2)
 police_car.set_total_duration(500)
 red_car = sprite.Sprite('images/vehicles/red_car_left.png', 2)
 red_car.set_total_duration(500)
+
+#WATER PROPS
+tire = sprite.Sprite('images/props/tire.png',2)
 
 VEHICLES = {
     'yellow_car': yellow_car,
@@ -100,6 +103,10 @@ VEHICLES = {
     'ciclista-sexy': ciclista_sexy_right,
     'vendedor_de_cana': vendedor_de_cana,
     'vendedor_de_picole': vendedor_de_picole
+}
+
+PROPS = {
+    'tire': tire
 }
 
 #BURACO

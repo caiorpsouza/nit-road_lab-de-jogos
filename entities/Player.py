@@ -140,3 +140,4 @@ class Player:
             if self.current_sprite.get_curr_frame() == 4:
                 self.falling = False
                 self.volta_pro_inicio()
+    

@@ -2,15 +2,16 @@ import fases
 import sounds
 import config
 import sprites
-from entities import Player, CarSpawner, Buraco
+from entities import Player, CarSpawner, Buraco, PropSpawner
 
 
 def carregar_fase(numero_fase):
     fase = fases.phases[numero_fase - 1]
     buracos = Buraco.buraco_generator(fase["buracos"])
     veiculos = []
+    props = []
 
-    for spawner_info in fase["spawners"]:
+    for spawner_info in fase["CarSpawners"]:
         veiculo_spawner = CarSpawner.CarSpawner(
             spawner_info["lane"],
             spawner_info["side"],
@@ -19,14 +20,25 @@ def carregar_fase(numero_fase):
         )
         veiculos.append(veiculo_spawner)
 
-    return buracos, veiculos
+    for spawner_info in fase["PropSpawners"]:
+        prop_spawner = PropSpawner.PropSpawner(
+            spawner_info["lane"],
+            spawner_info["side"],
+            spawner_info["props"],
+            spawner_info["velocity"],
+        )
+        props.append(prop_spawner)
+    
+
+
+    return buracos, veiculos, props
 
 def jogo():
    
     sounds.tocar_game()
     config.fase = 1
     player = Player.Player("Player1", 3, 100)
-    buracos, veiculos = carregar_fase(config.fase)
+    buracos, veiculos, props = carregar_fase(config.fase)
 
 
     tempo = 0
@@ -44,6 +56,9 @@ def jogo():
             return
         
         Buraco.buraco_drawer(buracos)
+
+        for prop_spawner in props:
+            prop_spawner.loop()
 
         for veiculo in veiculos:
             veiculo.loop()
@@ -78,6 +93,8 @@ def jogo():
                 else:
                     carros_atras.append(carro)
 
+        for prop in props:
+            prop.draw()
         player.update()
 
         # Carro atras do player
