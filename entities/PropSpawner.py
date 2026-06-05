@@ -68,7 +68,6 @@ class PropSpawner:
 
     def spawnProp(self, tipo):
         sprite_ref = sprites.PROPS[tipo]
-        print(tipo)
         novo_prop = Prop(
                         sprite.Sprite(f'images/props/{tipo}.png', 2),
                         self.x,
