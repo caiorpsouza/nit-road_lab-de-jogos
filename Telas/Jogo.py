@@ -2,7 +2,7 @@ import fases
 import sounds
 import config
 import sprites
-from entities import Player, CarSpawner, Buraco, PropSpawner
+from entities import LifeDisplay, Player, CarSpawner, Buraco, PropSpawner
 
 
 def carregar_fase(numero_fase):
@@ -37,7 +37,8 @@ def jogo():
    
     sounds.tocar_game()
     config.fase = 1
-    player = Player.Player("Player1", 3, 100)
+    life_display = LifeDisplay.LifeDisplay()
+    player = Player.Player("Player1", config.max_vidas, 100)
     buracos, veiculos, props = carregar_fase(config.fase)
 
 
@@ -55,6 +56,9 @@ def jogo():
             config.Tela = "Menu"
             return
         
+        life_display.loop()
+        life_display.lifes = player.retorna_vidas()
+
         Buraco.buraco_drawer(buracos)
 
         for prop_spawner in props:
@@ -63,15 +67,18 @@ def jogo():
         for veiculo in veiculos:
             veiculo.loop()
         
-        player.caiu_morreu(buracos)
-
         player.move(tempo)
+        player.try_land_on_props(props)
+        player.check_afogamento()
+        player.update_on_props(props)
+        player.caiu_morreu(buracos)
 
         # Verificar se o player chegou ao topo da tela para avançar de fase
         if player.player_y + player.current_sprite.height <= 0:
             if config.fase < 3:
                 config.fase += 1
-                buracos, veiculos = carregar_fase(config.fase)
+                buracos, veiculos, props = carregar_fase(config.fase)
+
                 player.volta_pro_inicio()
             else:
                 player.volta_pro_inicio()
@@ -95,6 +102,7 @@ def jogo():
 
         for prop in props:
             prop.draw()
+            
         player.update()
 
         # Carro atras do player
@@ -103,10 +111,5 @@ def jogo():
 
         player.draw()
 
-        # Carro na frente do player
         for carro in carros_na_frente:
             carro.draw()
-
-
-
-

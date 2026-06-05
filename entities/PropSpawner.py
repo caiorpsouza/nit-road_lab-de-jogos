@@ -36,7 +36,6 @@ class PropSpawner:
         return all(prop.sprite.x >= self.spawn_clearance for prop in self.props)
     
     def loop(self):
-        print(self.props)
         self.spawn_timer += config.janela.delta_time()
 
         if self.spawn_timer >= self.spawn_cooldown and self._pode_spawnar():
@@ -46,21 +45,22 @@ class PropSpawner:
             prop_escolhido = random.choice(self.prop_types)
             self.spawnProp(prop_escolhido)
 
-        for prop in self.props:
+        for prop in list(self.props):
             if prop.sprite.x > config.janela.largura:
                 self.props.remove(prop)
-            if prop.sprite.y > config.janela.altura:
+            elif prop.sprite.y > config.janela.altura:
                 self.props.remove(prop)
-            if prop.sprite.x + prop.sprite.width < 0:
+            elif prop.sprite.x + prop.sprite.width < 0:
                 self.props.remove(prop)
-            if prop.sprite.y + prop.sprite.height < 0:
+            elif prop.sprite.y + prop.sprite.height < 0:
                 self.props.remove(prop)
-
-            if self.side == 'right':
-                prop.sprite.x -= prop.speed * config.janela.delta_time()
             else:
-                prop.sprite.x += prop.speed * config.janela.delta_time()
-            prop.sprite.update()
+                if self.side == 'right':
+                    dx = -prop.speed * config.janela.delta_time()
+                else:
+                    dx = prop.speed * config.janela.delta_time()
+                prop.move(dx, 0)
+                prop.sprite.update()
 
     def draw(self):
         for prop in self.props:
@@ -68,22 +68,25 @@ class PropSpawner:
 
     def spawnProp(self, tipo):
         sprite_ref = sprites.PROPS[tipo]
+        print(tipo)
         novo_prop = Prop(
                         sprite.Sprite(f'images/props/{tipo}.png', 2),
                         self.x,
-                        self.y - sprite_ref.height / 2,
+                        self.y,
                         self.prop_speed,
-                        500
+                        500,
+                        self.lane
                     )
         if self.side == 'right':
             novo_prop.sprite.set_position(
                 novo_prop.x,
-                self.y - sprite_ref.height / 2
+                self.y
             )
         else:
+            novo_prop.x = -sprite_ref.width
             novo_prop.sprite.set_position(
-                novo_prop.x - sprite_ref.width,
-                self.y - sprite_ref.height / 2
+                -sprite_ref.width,
+                self.y
             )
 
         self.props.append(novo_prop)

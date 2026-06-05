@@ -1,11 +1,12 @@
+import fases
 import sprites
 import config
 import sounds
 
 class Player:
-    def __init__(self, name, life, velocity):
+    def __init__(self, name, lifes, velocity):
         self.name = name
-        self.life = life
+        self.lifes = lifes
         self.velocity = velocity
 
         self.player_down = sprites.player_down
@@ -14,6 +15,7 @@ class Player:
         self.player_right = sprites.player_right
         self.player_crushing = sprites.player_crushing
         self.player_falling = sprites.player_falling
+        self.player_drowning = sprites.player_falling
 
         self.current_sprite = self.player_down
 
@@ -35,15 +37,24 @@ class Player:
 
         self.crushing = False
         self.falling = False
+        self.drowning = False
         self.reespawn_cd = 1
         self.reespawn_timer = 0
 
+        self.current_prop = None
+        self.just_landed_on_prop = False
+        self.last_prop = None
+
     def get_lane(self):
-        altura_lane = sprites.fase1.height / 16
+        fase = fases.phases[config.fase - 1]
+        altura_lane = fase['background'].height / 16
         return round(self.player_y / altura_lane) + 1
+    
+    def retorna_vidas(self):
+        return self.lifes
 
     def handle_input(self):
-        if not self.crushing and not self.falling:
+        if not self.crushing and not self.falling and not self.drowning:
             if config.keyboard.key_pressed("UP") or config.keyboard.key_pressed("W"):
                 self.move_direction = "up"
             elif config.keyboard.key_pressed("DOWN") or config.keyboard.key_pressed("S"):
@@ -82,6 +93,10 @@ class Player:
         self.current_sprite.play()
         self.jump_sound.play()  
 
+        # Se se moveu enquanto estava em um prop, marca para não aplicar follow_prop este frame
+        if self.current_prop:
+            self.just_landed_on_prop = True
+
         self.last_jump_time = current_time
         self.move_direction = None
 
@@ -119,6 +134,7 @@ class Player:
                     self.current_sprite = self.player_crushing
                     self.current_sprite.set_curr_frame(0)
                     self.crushing = True
+                    self.lifes -= 1
 
         if self.crushing:
             if self.current_sprite.get_curr_frame() == 3:
@@ -135,9 +151,95 @@ class Player:
                         self.current_sprite = self.player_falling
                         self.current_sprite.set_curr_frame(0)
                         self.falling = True
+                        self.lifes -= 1
         
         if self.falling:
             if self.current_sprite.get_curr_frame() == 4:
                 self.falling = False
                 self.volta_pro_inicio()
     
+    #A partir daqui é perigo...
+    def check_afogamento(self):
+        # Se está em um prop, cancela o afogamento!
+        if self.current_prop is not None:
+            if self.drowning:
+                self.drowning = False
+                self.current_sprite = self.player_down
+                self.current_sprite.set_curr_frame(0)
+            return
+        
+        if not self.drowning:
+            fase = fases.phases[config.fase - 1]
+            lane = self.get_lane()
+            is_water = fase['terrains'][lane] == 'water'
+            
+            if not self.current_prop and is_water:
+                self.current_sprite = self.player_drowning
+                self.current_sprite.set_curr_frame(0)
+                self.drowning = True
+                
+            
+        if self.drowning:
+            if self.current_sprite.get_curr_frame() == 4:
+                self.drowning = False
+                self.volta_pro_inicio()
+                self.lifes -= 1
+    
+    def release_prop(self):
+        self.last_prop = self.current_prop
+        self.current_prop = None
+        self.just_landed_on_prop = False
+
+    def follow_prop(self):
+        if self.current_prop is None:
+            return
+
+        self.player_x += self.current_prop.last_dx
+        self.player_y += self.current_prop.last_dy
+        self.current_sprite.set_position(self.player_x, self.player_y)
+
+        #PROP LEVA O PLAYER PARA O FIM DA TELA
+        if self.player_x + self.current_sprite.width >= config.janela.largura or self.player_x <= 0:
+            self.volta_pro_inicio()
+            self.lifes -= 1
+
+
+    def land_on_prop(self, prop):
+        self.current_prop = prop
+        self.just_landed_on_prop = True
+        self.player_y = prop.y
+        self.player_x = prop.x + prop.sprite.width/2 - self.current_sprite.width/2
+        self.current_sprite.set_position(self.player_x, self.player_y)
+
+    def update_on_props(self, prop_spawners):
+        if not self.current_prop:
+            return
+        
+        # Ignora verificação de colisão no frame que pousou para evitar soltar prematuramente
+        if self.just_landed_on_prop:
+            self.just_landed_on_prop = False
+            self.follow_prop()
+            return
+
+        props = [prop for spawner in prop_spawners for prop in spawner.props]
+        if self.current_prop not in props or not self.current_sprite.collided(self.current_prop.sprite) or (self.current_prop.lane != self.get_lane()):
+            self.release_prop()
+        else:
+            self.follow_prop()
+
+    def try_land_on_props(self, prop_spawners):
+
+        if self.current_prop or self.crushing or self.falling:
+            return
+
+        props = [prop for spawner in prop_spawners for prop in spawner.props]
+        for prop in props:
+            # Não deixa pousar no mesmo prop que acabou de sair
+            if prop == self.last_prop:
+                continue
+            if self.get_lane() == prop.lane:
+                if self.current_sprite.collided(prop.sprite):
+                        print(f' POUSOU NO PROP! Lane: {prop.lane}, Prop posição: ({prop.x}, {prop.y})')
+                        self.land_on_prop(prop)
+                        self.last_prop = None
+                        break    

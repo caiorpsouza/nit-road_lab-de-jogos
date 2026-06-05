@@ -5,6 +5,9 @@ from PPlay import *
 title = sprite.Sprite("images/title/title.png")
 title.set_position(config.janela.largura/2-title.width/2, 50)
 
+# LIFES
+life = sprite.Sprite("images/vidas/pacoca_full.png")
+
 # BOTÕES
 espaco =  100
 y_inicial = config.janela.altura/2 - (3 * espaco)/2
@@ -27,7 +30,6 @@ scores_btn = sprite.Sprite("images/buttons/scores-button copy.png")
 scores_btn.set_position(config.janela.largura/2-scores_btn.width/2, y_inicial + 2 * espaco)
 quit_btn = sprite.Sprite("images/buttons/quit-button copy.png")
 quit_btn.set_position(config.janela.largura/2-quit_btn.width/2, y_inicial + 3 * espaco)
-
 
 # BACKGROUND
 background_menu = sprite.Sprite("images/backgrounds/background-tarde.png")
@@ -95,6 +97,8 @@ red_car.set_total_duration(500)
 
 #WATER PROPS
 tire = sprite.Sprite('images/props/tire.png',2)
+bed1 = sprite.Sprite('images/props/bed1.png',2)
+bed2 = sprite.Sprite('images/props/bed2.png',2)
 
 VEHICLES = {
     'yellow_car': yellow_car,
@@ -106,7 +110,9 @@ VEHICLES = {
 }
 
 PROPS = {
-    'tire': tire
+    'tire': tire,
+    'bed1': bed1,
+    'bed2': bed2,
 }
 
 #BURACO
