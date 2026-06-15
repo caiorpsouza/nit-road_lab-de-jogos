@@ -42,6 +42,8 @@ fase2 = sprite.Sprite("images/backgrounds/fase2.png")
 fase2.set_position(0, 0)
 fase3= sprite.Sprite("images/backgrounds/fase3.png")
 fase3.set_position(0, 0)
+fase4 = sprite.Sprite("images/backgrounds/fase4.png")
+fase4.set_position(0, 0)
 
 
 # PLAYER
@@ -94,6 +96,8 @@ police_car = sprite.Sprite('images/vehicles/police_car_left.png', 2)
 police_car.set_total_duration(500)
 red_car = sprite.Sprite('images/vehicles/red_car_left.png', 2)
 red_car.set_total_duration(500)
+bus = sprite.Sprite('images/vehicles/bus_left.png', 2)
+bus.set_total_duration(500)
 
 #WATER PROPS
 tire = sprite.Sprite('images/props/tire.png',2)
@@ -106,7 +110,8 @@ VEHICLES = {
     'red_car': red_car,
     'ciclista-sexy': ciclista_sexy_right,
     'vendedor_de_cana': vendedor_de_cana,
-    'vendedor_de_picole': vendedor_de_picole
+    'vendedor_de_picole': vendedor_de_picole,
+    'bus': bus
 }
 
 PROPS = {

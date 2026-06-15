@@ -14,7 +14,7 @@ class LifeDisplay:
     def loop(self):
         for i in range(self.lifes):
             nova_vida = self.vida_sprite
-            nova_vida.set_position(self.x - (i * (self.vida_sprite.width * 3/4)) - self.vida_sprite.width, 30)
+            nova_vida.set_position(self.x - (i * (self.vida_sprite.width * 3/4)) - self.vida_sprite.width, 20)
             nova_vida.draw()
 
 

@@ -171,8 +171,9 @@ class Player:
         if not self.drowning:
             fase = fases.phases[config.fase - 1]
             lane = self.get_lane()
+
             is_water = fase['terrains'][lane] == 'water'
-            
+
             if not self.current_prop and is_water:
                 self.current_sprite = self.player_drowning
                 self.current_sprite.set_curr_frame(0)
@@ -208,7 +209,8 @@ class Player:
         self.current_prop = prop
         self.just_landed_on_prop = True
         self.player_y = prop.y
-        self.player_x = prop.x + prop.sprite.width/2 - self.current_sprite.width/2
+        # Comentei aqui para deixar o player na posicao exata onde ele tá pulando, ao invés de centralizar ele no prop. 
+        # self.player_x = prop.x + prop.sprite.width/2 - self.current_sprite.width/2
         self.current_sprite.set_position(self.player_x, self.player_y)
 
     def update_on_props(self, prop_spawners):
