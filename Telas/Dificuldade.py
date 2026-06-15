@@ -27,4 +27,3 @@ def play() :
         sprites.medio_btn.draw()
         sprites.dificil_btn.draw()
         config.janela.update()
-        print(config.dificuldade)

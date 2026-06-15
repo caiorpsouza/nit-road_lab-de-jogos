@@ -10,6 +10,8 @@ Tela = 'Menu'
 dificuldade = 1
 is_running = True
 
+max_vidas = 5
+
 volume = True
 
 fase = 1

@@ -5,6 +5,9 @@ from PPlay import *
 title = sprite.Sprite("images/title/title.png")
 title.set_position(config.janela.largura/2-title.width/2, 50)
 
+# LIFES
+life = sprite.Sprite("images/vidas/pacoca_full.png")
+
 # BOTÕES
 espaco =  100
 y_inicial = config.janela.altura/2 - (3 * espaco)/2
@@ -28,7 +31,6 @@ scores_btn.set_position(config.janela.largura/2-scores_btn.width/2, y_inicial + 
 quit_btn = sprite.Sprite("images/buttons/quit-button copy.png")
 quit_btn.set_position(config.janela.largura/2-quit_btn.width/2, y_inicial + 3 * espaco)
 
-
 # BACKGROUND
 background_menu = sprite.Sprite("images/backgrounds/background-tarde.png")
 background_menu.set_position(0,0)
@@ -38,6 +40,8 @@ fase1 = sprite.Sprite("images/backgrounds/fase1.png")
 fase1.set_position(0, 0)
 fase2 = sprite.Sprite("images/backgrounds/fase2.png")
 fase2.set_position(0, 0)
+fase3= sprite.Sprite("images/backgrounds/fase3.png")
+fase3.set_position(0, 0)
 
 
 # PLAYER
@@ -45,8 +49,8 @@ player_up = sprite.Sprite("images/player/player-up.png", 4)
 player_right = sprite.Sprite("images/player/player-right.png", 4)
 player_left = sprite.Sprite("images/player/player-left.png", 4)
 player_down = sprite.Sprite("images/player/player-down.png", 4)
-player_crushing = sprite.Sprite("images/player/jogador-crushing.png", 4)
-player_falling = sprite.Sprite("images/player/jogador-falling.png", 4)
+player_crushing = sprite.Sprite("images/player/player-crushing.png", 4)
+player_falling = sprite.Sprite("images/player/player-falling.png", 5)
 
 player_up.set_total_duration(333)
 player_right.set_total_duration(333)
@@ -69,26 +73,46 @@ player_right.pause()
 player_left.pause()
 player_down.pause()
 
-# Volume icon
 # VOLUME 
 volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 1)
 volume_on.set_position(config.janela.largura - volume_on.width - 10, 10)
 volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
 volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 
+#VENDEDORES
+vendedor_de_cana = sprite.Sprite("images/vehicles/vendedor_de_cana_left.png", 2)
+vendedor_de_picole = sprite.Sprite("images/vehicles/vendedor_de_picole_left.png", 2)
+
+#CICLISTAS
+ciclista_sexy_right = sprite.Sprite('images/vehicles/ciclista-sexy_right.png',2)
+ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left.png',2)
+
 #CARROS
-
-
-yellow_car = sprite.Sprite('images/vehicles/yellow_car_left_new.png', 2)
+yellow_car = sprite.Sprite('images/vehicles/yellow_car_left.png', 2)
 yellow_car.set_total_duration(500)
-police_car = sprite.Sprite('images/vehicles/police_car_left_new.png', 2)
+police_car = sprite.Sprite('images/vehicles/police_car_left.png', 2)
 police_car.set_total_duration(500)
-red_car = sprite.Sprite('images/vehicles/red_car_left_new.png', 2)
+red_car = sprite.Sprite('images/vehicles/red_car_left.png', 2)
 red_car.set_total_duration(500)
+
+#WATER PROPS
+tire = sprite.Sprite('images/props/tire.png',2)
+bed1 = sprite.Sprite('images/props/bed1.png',2)
+bed2 = sprite.Sprite('images/props/bed2.png',2)
+
 VEHICLES = {
     'yellow_car': yellow_car,
     'police_car': police_car,
-    'red_car': red_car
+    'red_car': red_car,
+    'ciclista-sexy': ciclista_sexy_right,
+    'vendedor_de_cana': vendedor_de_cana,
+    'vendedor_de_picole': vendedor_de_picole
+}
+
+PROPS = {
+    'tire': tire,
+    'bed1': bed1,
+    'bed2': bed2,
 }
 
 #BURACO
