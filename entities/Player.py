@@ -53,6 +53,24 @@ class Player:
     def retorna_vidas(self):
         return self.lifes
 
+    def _shrunk_bounds(self, sprite, shrink_x=0.22, shrink_y=0.12):
+        inset_x = sprite.width * shrink_x / 2
+        inset_y = sprite.height * shrink_y / 2
+        return (
+            sprite.x + inset_x,
+            sprite.y + inset_y,
+            sprite.width - (inset_x * 2),
+            sprite.height - (inset_y * 2),
+        )
+
+    def _bounds_overlap(self, bounds_a, bounds_b):
+        ax, ay, aw, ah = bounds_a
+        bx, by, bw, bh = bounds_b
+        return (ax < bx + bw and
+                ax + aw > bx and
+                ay < by + bh and
+                ay + ah > by)
+
     def handle_input(self):
         if not self.crushing and not self.falling and not self.drowning:
             if config.keyboard.key_pressed("UP") or config.keyboard.key_pressed("W"):
@@ -129,8 +147,10 @@ class Player:
 
     def check_atropelamento(self, carros):
         if not self.crushing and not self.falling:
+            player_bounds = self._shrunk_bounds(self.current_sprite)
             for carro in carros.carros:
-                if self.current_sprite.collided(carro.sprite):
+                carro_bounds = self._shrunk_bounds(carro.sprite)
+                if self._bounds_overlap(player_bounds, carro_bounds):
                     self.current_sprite = self.player_crushing
                     self.current_sprite.set_curr_frame(0)
                     self.crushing = True
