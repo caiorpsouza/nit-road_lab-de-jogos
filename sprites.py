@@ -12,24 +12,25 @@ life = sprite.Sprite("images/vidas/pacoca_full.png")
 espaco =  100
 y_inicial = config.janela.altura/2 - (3 * espaco)/2
 
-facil_btn = sprite.Sprite("images/buttons/easy-diff-button.png")
+facil_btn = sprite.Sprite("images/buttons/easy-diff-button.png", 2)
 facil_btn.set_position(config.janela.largura/2-facil_btn.width/2, y_inicial)
-medio_btn = sprite.Sprite("images/buttons/medium-diff-button.png")
+medio_btn = sprite.Sprite("images/buttons/medium-diff-button.png", 2)
 medio_btn.set_position(config.janela.largura/2-medio_btn.width/2, y_inicial + espaco)
-dificil_btn = sprite.Sprite("images/buttons/hard-diff-button.png")
+dificil_btn = sprite.Sprite("images/buttons/hard-diff-button.png", 2)
 dificil_btn.set_position(config.janela.largura/2-dificil_btn.width/2, y_inicial + 2 * espaco)
 
 espaco = 120 
 y_inicial = config.janela.altura/2 - (3 * espaco)/2
 
-play_btn = sprite.Sprite("images/buttons/play-button copy.png")
+play_btn = sprite.Sprite("images/buttons/play-button copy.png", 2)
 play_btn.set_position(config.janela.largura/2-play_btn.width/2, y_inicial)
-diff_btn = sprite.Sprite("images/buttons/diff-button copy.png")
+diff_btn = sprite.Sprite("images/buttons/diff-button copy.png", 2)
 diff_btn.set_position(config.janela.largura/2-diff_btn.width/2, y_inicial + espaco)
-scores_btn = sprite.Sprite("images/buttons/scores-button copy.png")
+scores_btn = sprite.Sprite("images/buttons/scores-button copy.png", 2)
 scores_btn.set_position(config.janela.largura/2-scores_btn.width/2, y_inicial + 2 * espaco)
-quit_btn = sprite.Sprite("images/buttons/quit-button copy.png")
+quit_btn = sprite.Sprite("images/buttons/quit-button copy.png", 2)
 quit_btn.set_position(config.janela.largura/2-quit_btn.width/2, y_inicial + 3 * espaco)
+
 
 # BACKGROUND
 background_menu = sprite.Sprite("images/backgrounds/background-tarde.png")
@@ -76,10 +77,16 @@ player_left.pause()
 player_down.pause()
 
 # VOLUME 
-volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 1)
+volume_on = sprite.Sprite("images/icon-sound/sound-on.png", 2)
 volume_on.set_position(config.janela.largura - volume_on.width - 10, 10)
-volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 1)
+volume_on.set_total_duration(200)
+volume_on.set_loop(False)
+volume_on.pause()
+volume_off = sprite.Sprite("images/icon-sound/sound-off.png", 2)
 volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
+volume_off.set_total_duration(200)
+volume_off.set_loop(False)  
+volume_off.pause()
 
 #VENDEDORES
 vendedor_de_cana = sprite.Sprite("images/vehicles/vendedor_de_cana_left.png", 2)

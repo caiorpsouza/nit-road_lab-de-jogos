@@ -3,11 +3,19 @@ from PPlay.sound import Music
 import config
 import sprites
 import sounds
+    
 
 def play() :
     sounds.tocar_menu()
-    
+    botoes = [sprites.play_btn, sprites.diff_btn, sprites.scores_btn, sprites.quit_btn, sprites.volume_on, sprites.volume_off]
     while True:
+        
+        for botao in botoes:
+            if config.janela.mouse.is_over_object(botao):
+                botao.set_curr_frame(1)
+            else:
+                botao.set_curr_frame(0)
+
 
         #Clique no botão Sair
         if (config.janela.mouse.button_down(1) and config.janela.mouse.is_over_object(sprites.quit_btn)):

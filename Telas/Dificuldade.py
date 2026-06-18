@@ -2,10 +2,15 @@ from PPlay import *
 import config
 import sprites
 
-
 def play() :
+    botoes = [sprites.facil_btn, sprites.medio_btn, sprites.dificil_btn]
     while True:
 
+        for botao in botoes:
+            if config.janela.mouse.is_over_object(botao):
+                botao.set_curr_frame(1)
+            else:
+                botao.set_curr_frame(0)
 
         #Clique nos botões
         if (config.janela.mouse.button_down(1) and config.janela.mouse.is_over_object(sprites.facil_btn)):
