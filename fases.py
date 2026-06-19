@@ -14,9 +14,9 @@ phases = [
             {"lane": 7, "side": "right", "vehicles": ["yellow_car", "police_car"], "velocity": 300},
             {"lane": 8, "side": "right", "vehicles": ["police_car"], "velocity": 350},
             {"lane": 11, "side": "left", "vehicles": ["red_car"], "velocity": 400},
-            {"lane": 12, "side": "left", "vehicles": ["yellow_car"], "velocity": 200},
-            {"lane": 13, "side": "right", "vehicles": ["red_car", "yellow_car", "yellow_car"], "velocity": 200},
-            {"lane": 14, "side": "right", "vehicles": ["red_car", "yellow_car", "yellow_car"], "velocity": 200}
+            {"lane": 12, "side": "left", "vehicles": ["yellow_car", "blue_car"], "velocity": 200},
+            {"lane": 13, "side": "right", "vehicles": ["red_car", "yellow_car", "blue_car"], "velocity": 200},
+            {"lane": 14, "side": "right", "vehicles": ["red_car", "yellow_car"], "velocity": 200}
         ],
         "buracos": 3,
         "terrains": {
@@ -33,13 +33,13 @@ phases = [
         "CarSpawners": [
             {"lane": 4, "side": "left", "vehicles": ["red_car", "yellow_car"], "velocity": 150},
             {"lane": 5, "side": "left", "vehicles": ["red_car", "police_car"], "velocity": 150},
-            {"lane": 6, "side": "right", "vehicles": ["yellow_car"], "velocity": 150},
+            {"lane": 6, "side": "right", "vehicles": ["yellow_car"], "velocity": 100},
             {"lane": 7, "side": "left", "vehicles": ["police_car", "red_car"], "velocity": 150},
-            {"lane": 8, "side": "left", "vehicles": ["yellow_car"], "velocity": 150},
+            {"lane": 8, "side": "left", "vehicles": ["yellow_car"], "velocity": 200},
             {"lane": 9, "side": "right", "vehicles": ["bus"], "velocity": 150},
-            {"lane": 12, "side": "left", "vehicles": ["bus"], "velocity": 150},
+            {"lane": 12, "side": "left", "vehicles": ["bus"], "velocity": 300},
             {"lane": 13, "side": "left", "vehicles": ["police_car"], "velocity": 150},
-            {"lane": 14, "side": "right", "vehicles": ["red_car"], "velocity": 150},
+            {"lane": 14, "side": "right", "vehicles": ["red_car"], "velocity": 400},
         ],
         "buracos": 4,
         "terrains": {
@@ -54,12 +54,12 @@ phases = [
         "background": sprites.fase3,
         "PropSpawners": [
             {"lane": 3, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 100},
-            {"lane": 4, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 100},
+            {"lane": 4, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 150},
             {"lane": 5, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 100},
-            {"lane": 6, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 100},
+            {"lane": 6, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 200},
             {"lane": 7, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 100},
-            {"lane": 8, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 100},
-            {"lane": 9, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 100},
+            {"lane": 8, "side": "left", "props": ["tire", "bed1", "bed2"], "velocity": 250},
+            {"lane": 9, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 200},
             {"lane": 10, "side": "right", "props": ["tire", "bed1", "bed2"], "velocity": 100},
         ],
         "CarSpawners": [

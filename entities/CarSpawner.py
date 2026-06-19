@@ -18,12 +18,14 @@ class CarSpawner:
         # Comentando pois já tem o spawn_cooldown
         # self.spawn_margin = random.randint(-10, 10) / 100
 
+        self.lane_offset = 5
+
         if self.side == 'right':
             self.x = config.janela.largura
         else:
             self.x = 0
 
-        self.y = sprites.fase1.height / 16 * (self.lane - 1)
+        self.y = sprites.fase1.height / 16 * (self.lane - 1) - self.lane_offset
 
     def _next_spawn_cooldown(self):
         return random.randint(30, 55) / 10
@@ -77,7 +79,7 @@ class CarSpawner:
 
             novo_carro.sprite.set_position(
                 novo_carro.x,
-                self.y - sprite_ref.height / 2
+                self.y - sprite_ref.height / 2 - 10
             )
 
         else:
@@ -91,7 +93,7 @@ class CarSpawner:
 
             novo_carro.sprite.set_position(
                 novo_carro.x - sprite_ref.width,
-                self.y - sprite_ref.height / 2
+                self.y - sprite_ref.height / 2 - 10
             )
 
         self.carros.append(novo_carro)

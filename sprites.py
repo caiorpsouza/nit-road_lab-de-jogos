@@ -98,13 +98,10 @@ ciclista_sexy_left = sprite.Sprite('images/vehicles/ciclista-sexy_left.png',2)
 
 #CARROS
 yellow_car = sprite.Sprite('images/vehicles/yellow_car_left.png', 2)
-yellow_car.set_total_duration(500)
 police_car = sprite.Sprite('images/vehicles/police_car_left.png', 2)
-police_car.set_total_duration(500)
 red_car = sprite.Sprite('images/vehicles/red_car_left.png', 2)
-red_car.set_total_duration(500)
 bus = sprite.Sprite('images/vehicles/bus_left.png', 2)
-bus.set_total_duration(500)
+blue_car = sprite.Sprite('images/vehicles/blue_car_left.png', 2)
 
 #WATER PROPS
 tire = sprite.Sprite('images/props/tire.png',2)
@@ -118,7 +115,8 @@ VEHICLES = {
     'ciclista-sexy': ciclista_sexy_right,
     'vendedor_de_cana': vendedor_de_cana,
     'vendedor_de_picole': vendedor_de_picole,
-    'bus': bus
+    'bus': bus,
+    'blue_car': blue_car
 }
 
 PROPS = {
