@@ -1,1 +1,23 @@
-__pycache__
+# PyInstaller
+build/
+dist/
+
+# Biblioteca local
+PPlay/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ambientes virtuais
+venv/
+.venv/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
