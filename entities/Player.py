@@ -2,6 +2,7 @@ import fases
 import sprites
 import config
 import sounds
+from PPlay.collision import Collision
 
 class Player:
     def __init__(self, name, lifes, velocity):
@@ -44,6 +45,9 @@ class Player:
         self.current_prop = None
         self.just_landed_on_prop = False
         self.last_prop = None
+        self.prop_fall_margin = 5
+        self.car_hitbox_shrink_x = 0.5
+        self.car_hitbox_shrink_y = 0.4
 
     def get_lane(self):
         fase = fases.phases[config.fase - 1]
@@ -147,10 +151,23 @@ class Player:
 
     def check_atropelamento(self, carros):
         if not self.crushing and not self.falling:
-            player_bounds = self._shrunk_bounds(self.current_sprite)
+            player_bounds = self._shrunk_bounds(
+                self.current_sprite,
+                self.car_hitbox_shrink_x,
+                self.car_hitbox_shrink_y,
+            )
             for carro in carros.carros:
-                carro_bounds = self._shrunk_bounds(carro.sprite)
-                if self._bounds_overlap(player_bounds, carro_bounds):
+                carro_bounds = self._shrunk_bounds(
+                    carro.sprite,
+                    self.car_hitbox_shrink_x,
+                    self.car_hitbox_shrink_y,
+                )
+
+                # Primeiro exige sobreposição de hitbox reduzida para evitar colisão em bordas vazias.
+                if not self._bounds_overlap(player_bounds, carro_bounds):
+                    continue
+
+                if Collision.perfect_collision(self.current_sprite, carro.sprite):
                     self.current_sprite = self.player_crushing
                     self.current_sprite.set_curr_frame(0)
                     self.crushing = True
@@ -224,13 +241,26 @@ class Player:
             self.volta_pro_inicio()
             self.lifes -= 1
 
+    def _is_still_safely_on_prop(self):
+        if self.current_prop is None:
+            return False
+
+        player_left = self.player_x
+        player_right = self.player_x + self.current_sprite.width
+        prop_left = self.current_prop.x
+        prop_right = self.current_prop.x + self.current_prop.sprite.width
+        overlap_left = max(player_left, prop_left)
+        overlap_right = min(player_right, prop_right)
+        overlap_width = overlap_right - overlap_left
+
+        return overlap_width >= (self.current_sprite.width / 2) + self.prop_fall_margin
+
 
     def land_on_prop(self, prop):
         self.current_prop = prop
         self.just_landed_on_prop = True
-        self.player_y = prop.y
-        # Comentei aqui para deixar o player na posicao exata onde ele tá pulando, ao invés de centralizar ele no prop. 
-        # self.player_x = prop.x + prop.sprite.width/2 - self.current_sprite.width/2
+        self.player_y = prop.y + prop.sprite.height / 2 - self.current_sprite.height
+        # Mantém o alinhamento horizontal atual; só centraliza no eixo vertical do prop.
         self.current_sprite.set_position(self.player_x, self.player_y)
 
     def update_on_props(self, prop_spawners):
@@ -244,7 +274,12 @@ class Player:
             return
 
         props = [prop for spawner in prop_spawners for prop in spawner.props]
-        if self.current_prop not in props or not self.current_sprite.collided(self.current_prop.sprite) or (self.current_prop.lane != self.get_lane()):
+        if (
+            self.current_prop not in props
+            or not self.current_sprite.collided(self.current_prop.sprite)
+            or (self.current_prop.lane != self.get_lane())
+            or not self._is_still_safely_on_prop()
+        ):
             self.release_prop()
         else:
             self.follow_prop()
