@@ -4,6 +4,7 @@ from PPlay import sprite
 import config
 from entities.Prop import Prop
 import sprites
+from assets import resource_path
 
 
 class PropSpawner:
@@ -69,7 +70,7 @@ class PropSpawner:
     def spawnProp(self, tipo):
         sprite_ref = sprites.PROPS[tipo]
         novo_prop = Prop(
-                        sprite.Sprite(f'images/props/{tipo}.png', 2),
+                        sprite.Sprite(resource_path(f'images/props/{tipo}.png'), 2),
                         self.x,
                         self.y,
                         self.prop_speed,

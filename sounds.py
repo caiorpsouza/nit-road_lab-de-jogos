@@ -1,10 +1,11 @@
 from PPlay import sound
 import config
+from assets import resource_path
 
 sons = {
-    "jump": sound.Sound("sounds/jump-sound.ogg"),
-    "menu_sound": sound.Sound("sounds/bossa-sound.ogg"),
-    "game_sound": sound.Sound("sounds/The_Rush_at_Avenida.ogg"),
+    "jump": sound.Sound(resource_path("sounds/jump-sound.ogg")),
+    "menu_sound": sound.Sound(resource_path("sounds/bossa-sound.ogg")),
+    "game_sound": sound.Sound(resource_path("sounds/The_Rush_at_Avenida.ogg")),
 }
 
 menu_tocando = False

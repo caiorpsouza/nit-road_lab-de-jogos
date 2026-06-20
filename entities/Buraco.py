@@ -2,13 +2,14 @@ import random
 
 from PPlay import sprite
 import sprites
+from assets import resource_path
 
 
 class Buraco:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.sprite = sprite.Sprite("images/obstacles/buraco.png")
+        self.sprite = sprite.Sprite(resource_path("images/obstacles/buraco.png"))
         self.sprite.set_position(self.x, self.y)
 
     def draw(self):

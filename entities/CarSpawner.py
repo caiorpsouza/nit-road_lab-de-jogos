@@ -3,6 +3,7 @@ import config
 from entities.Carro import Carro
 import sprites
 import random
+from assets import resource_path
 
 class CarSpawner:
     def __init__(self, lane, side, vehicles_types, velocity):
@@ -70,7 +71,7 @@ class CarSpawner:
         sprite_ref = sprites.VEHICLES[tipo]
         if self.side == 'right':
             novo_carro = Carro(
-                sprite.Sprite(f'images/vehicles/{tipo}_right.png', 2),
+                sprite.Sprite(resource_path(f'images/vehicles/{tipo}_right.png'), 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
                 self.car_speed,
@@ -84,7 +85,7 @@ class CarSpawner:
 
         else:
             novo_carro = Carro(
-                sprite.Sprite(f'images/vehicles/{tipo}_left.png', 2),
+                sprite.Sprite(resource_path(f'images/vehicles/{tipo}_left.png'), 2),
                 self.x,
                 self.y - sprite_ref.height / 2,
                 self.car_speed,
