@@ -104,10 +104,21 @@ red_car = sprite.Sprite(resource_path('images/vehicles/red_car_left.png'), 2)
 bus = sprite.Sprite(resource_path('images/vehicles/bus_left.png'), 2)
 blue_car = sprite.Sprite(resource_path('images/vehicles/blue_car_left.png'), 2)
 
+#MOTO
+moto = sprite.Sprite(resource_path('images/vehicles/moto_left.png'), 2)
+
+#SCOOTER
+scooter = sprite.Sprite(resource_path('images/vehicles/scooter_left.png'), 2)
+
+#CAMINHAO
+caminhao = sprite.Sprite(resource_path('images/vehicles/caminhao_left.png'), 2)
+
 #WATER PROPS
 tire = sprite.Sprite(resource_path('images/props/tire.png'),2)
 bed1 = sprite.Sprite(resource_path('images/props/bed1.png'),2)
 bed2 = sprite.Sprite(resource_path('images/props/bed2.png'),2)
+
+
 
 VEHICLES = {
     'yellow_car': yellow_car,
@@ -117,7 +128,10 @@ VEHICLES = {
     'vendedor_de_cana': vendedor_de_cana,
     'vendedor_de_picole': vendedor_de_picole,
     'bus': bus,
-    'blue_car': blue_car
+    'blue_car': blue_car,
+    'moto': moto,
+    'scooter': scooter,
+    'caminhao': caminhao
 }
 
 PROPS = {
