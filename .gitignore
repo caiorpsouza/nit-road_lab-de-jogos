@@ -1,6 +1,7 @@
 # PyInstaller
 build/
 dist/
+main.spec
 
 # Biblioteca local
 PPlay/
