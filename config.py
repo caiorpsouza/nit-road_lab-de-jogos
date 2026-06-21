@@ -7,11 +7,11 @@ import os
 pygame.init()
 janela = window.Window(1400, 960, "Nit Road")
 
-'''info_tela = pygame.display.Info()
+info_tela = pygame.display.Info()
 janela.real_screen = pygame.display.set_mode(
 	(info_tela.current_w, info_tela.current_h),
 	pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE,
-)'''
+)
 
 keyboard = janela.keyboard
 mouse = janela.mouse
@@ -26,9 +26,48 @@ is_running = True
 
 max_vidas = 5
 
-volume = True
-
 fase = 1
+
+volume = 0.7
+volume_anterior = volume
+
+musica = True
+
+efeitos = True
+
+mouse_click_ativo = False
+
+
+def multiplicador_dificuldade():
+    return {
+        1: 1,
+        2: 1.2,
+        3: 1.5,
+    }.get(dificuldade, 1.0)
+
+
+def multiplicador_spawn_dificuldade():
+    return {
+        1: 1.15,
+        2: 1.0,
+        3: 0.9,
+    }.get(dificuldade, 1.0)
+
+
+def definir_volume(novo_volume):
+    global volume, volume_anterior
+    volume = max(0.0, min(1.0, novo_volume))
+    if volume > 0:
+        volume_anterior = volume
+
+
+def alternar_volume():
+    global volume, volume_anterior
+    if volume > 0:
+        volume_anterior = volume
+        volume = 0
+    else:
+        volume = volume_anterior if volume_anterior > 0 else 0.7
 
 # Sistema de desbloqueio de fases e tempos
 save_file = "save.json"
