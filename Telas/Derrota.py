@@ -2,10 +2,11 @@ from PPlay import *
 import config
 import sounds
 import sprites
+from assets import resource_path
 
 def play():
     # Textos da tela de vitória
-    titulo = sprite.Sprite("images/title/game_over.png")
+    titulo = sprite.Sprite(resource_path("images/title/game_over.png"))
     titulo.set_position(config.janela.largura/2 - titulo.width/2, 150)
     sounds.parar_game()
     if config.musica:

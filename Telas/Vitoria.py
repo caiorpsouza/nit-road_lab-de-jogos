@@ -1,5 +1,5 @@
 import pygame
-
+from assets import resource_path
 from PPlay import *
 import config
 import sounds
@@ -8,7 +8,7 @@ from datetime import datetime
 
 def play():
     # Textos da tela de vitória
-    titulo = sprite.Sprite("images/title/voce_ganhou.png")
+    titulo = sprite.Sprite(resource_path("images/title/voce_ganhou.png"))
     titulo.set_position(config.janela.largura/2 - titulo.width/2, 150)
     sounds.parar_game()
     if config.musica:

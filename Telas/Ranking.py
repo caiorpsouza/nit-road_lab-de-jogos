@@ -1,6 +1,8 @@
 from PPlay import sprite
 import config
 import sprites
+import os
+from assets import resource_path, save_path
 
 
 def para_segundos(t):
@@ -38,14 +40,20 @@ def cor_posicao(pos):
 def carregar_recordes():
     ranking = []
 
-    with open("recordes.txt", "r") as arquivo:
+    caminho = save_path("recordes.txt")
+
+    # cria arquivo se não existir
+    if not os.path.exists(caminho):
+        open(caminho, "w").close()
+
+    with open(caminho, "r", encoding="utf-8") as arquivo:
         for linha in arquivo:
             nome, tempo, data = linha.strip().split(" - ")
 
             ranking.append({
                 "nome": nome,
                 "pontuacao": tempo,
-                "data": data.split()[0]  # só a data
+                "data": data.split()[0]
             })
 
     ranking.sort(key=lambda x: para_segundos(x["pontuacao"]))

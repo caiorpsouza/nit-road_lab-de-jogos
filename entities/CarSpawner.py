@@ -71,7 +71,8 @@ class CarSpawner:
         sprite_ref = sprites.VEHICLES[tipo]
         # Isso aqui é uma porqueira que fiz para corrigir o bug do spawn de veículos na lane 14 e 13, que estavam aparecendo muito acima da lane.
         offset_y = 12 if tipo in ('ciclista-sexy', 'moto', 'scooter') else 0
-        offset_y = -10 if self.lane == 14 or self.lane == 13 or (self.lane == 12 and config.fase == 2) else offset_y
+        offset_y = -10 if (self.lane == 14 or self.lane == 13 or self.lane == 12) and config.fase == 2 else offset_y
+        offset_y = -10 if config.fase == 4 else offset_y
         spawn_y = self.y - sprite_ref.height / 2 + offset_y
 
         if self.side == 'right':
