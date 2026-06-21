@@ -9,7 +9,7 @@ class CarSpawner:
     def __init__(self, lane, side, vehicles_types, velocity):
         self.lane = lane
         self.carros = []
-        self.car_speed = velocity
+        self.car_speed = velocity * config.multiplicador_dificuldade()
         self.side = side
         self.vehicles_types = vehicles_types
         self.spawn_clearance = max(sprites.VEHICLES[tipo].width for tipo in self.vehicles_types)
@@ -29,7 +29,7 @@ class CarSpawner:
         self.y = sprites.fase1.height / 16 * (self.lane - 1) - self.lane_offset
 
     def _next_spawn_cooldown(self):
-        return random.randint(30, 55) / 10
+        return (random.randint(30, 55) / 10) * config.multiplicador_spawn_dificuldade()
 
     def _pode_spawnar(self):
         if self.side == 'right':

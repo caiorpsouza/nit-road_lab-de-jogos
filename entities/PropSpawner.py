@@ -11,7 +11,7 @@ class PropSpawner:
     def __init__(self, lane, side, prop_types, velocity):
         self.lane = lane
         self.props = []
-        self.prop_speed = velocity
+        self.prop_speed = velocity * config.multiplicador_dificuldade()
         self.side = side
         self.prop_types = prop_types
         self.spawn_clearance = max(sprites.PROPS[tipo].width for tipo in self.prop_types)
@@ -28,7 +28,7 @@ class PropSpawner:
         self.y = sprites.fase1.height / 16 * (self.lane - 1)
 
     def _next_spawn_cooldown(self):
-        return random.randint(30, 55) / 10
+        return (random.randint(30, 55) / 10) * config.multiplicador_spawn_dificuldade()
 
     def _pode_spawnar(self):
         if self.side == 'right':
