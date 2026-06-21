@@ -26,7 +26,10 @@ def play() :
             return 0
         if (config.janela.mouse.button_down(1) and config.janela.mouse.is_over_object(sprites.play_btn)):
             sounds.parar_menu()
-            config.Tela = 'Jogo'
+            config.Tela = 'Fase_Selecao'
+            return 0
+        if (config.janela.mouse.button_down(1) and config.janela.mouse.is_over_object(sprites.scores_btn)):
+            config.Tela = 'Ranking'
             return 0
         
         if (config.janela.mouse.button_down(1) and (config.janela.mouse.is_over_object(sprites.volume_on) or config.janela.mouse.is_over_object(sprites.volume_off))):

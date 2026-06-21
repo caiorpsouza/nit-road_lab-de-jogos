@@ -32,12 +32,27 @@ scores_btn.set_position(config.janela.largura/2-scores_btn.width/2, y_inicial + 
 quit_btn = sprite.Sprite(resource_path("images/buttons/quit-button copy.png"), 2)
 quit_btn.set_position(config.janela.largura/2-quit_btn.width/2, y_inicial + 3 * espaco)
 
+# BOTÕES DE FASES
+
+fase2_btn = sprite.Sprite(resource_path("images/buttons/fase2_button.png"),2)
+fase2_btn.set_position(config.janela.largura/2 - fase2_btn.width - 25, config.janela.altura/2 - fase2_btn.height/2)
+fase3_btn = sprite.Sprite(resource_path("images/buttons/fase3_button.png"),2)
+fase3_btn.set_position(config.janela.largura/2 + 25, config.janela.altura/2 - fase3_btn.height/2)
+fase1_btn = sprite.Sprite(resource_path("images/buttons/fase1_button.png"),2)
+fase1_btn.set_position(fase2_btn.x - fase1_btn.width - 50, config.janela.altura/2 - fase1_btn.height/2)
+fase4_btn = sprite.Sprite(resource_path("images/buttons/fase4_button.png"),2)
+fase4_btn.set_position(fase3_btn.x + fase3_btn.width + 50, config.janela.altura/2 - fase4_btn.height/2)
+
 
 # BACKGROUND
 background_menu = sprite.Sprite(resource_path("images/backgrounds/background-tarde.png"))
 background_menu.set_position(0,0)
 background_diff = sprite.Sprite(resource_path("images/backgrounds/background-dia.png"))
 background_diff.set_position(0, 0)
+background_fase_selecao = sprite.Sprite(resource_path("images/backgrounds/background-noite.png"))
+background_fase_selecao.set_position(0, 0)
+background_death = sprite.Sprite(resource_path("images/backgrounds/death-background.png"))
+background_death.set_position(0, 0)
 fase1 = sprite.Sprite(resource_path("images/backgrounds/fase1.png"))
 fase1.set_position(0, 0)
 fase2 = sprite.Sprite(resource_path("images/backgrounds/fase2.png"))
@@ -88,6 +103,9 @@ volume_off.set_position(config.janela.largura - volume_off.width - 10, 10)
 volume_off.set_total_duration(200)
 volume_off.set_loop(False)  
 volume_off.pause()
+
+# LOCK ICON
+locked_icon = sprite.Sprite(resource_path("images/buttons/locked.png"))
 
 #VENDEDORES
 vendedor_de_cana = sprite.Sprite(resource_path("images/vehicles/vendedor_de_cana_left.png"), 2)

@@ -19,7 +19,7 @@ class CarSpawner:
         # Comentando pois já tem o spawn_cooldown
         # self.spawn_margin = random.randint(-10, 10) / 100
 
-        self.lane_offset = 5
+        self.lane_offset = 0
 
         if self.side == 'right':
             self.x = config.janela.largura
@@ -69,32 +69,37 @@ class CarSpawner:
 
     def spawnVehicle(self, tipo):
         sprite_ref = sprites.VEHICLES[tipo]
+        # Isso aqui é uma porqueira que fiz para corrigir o bug do spawn de veículos na lane 14 e 13, que estavam aparecendo muito acima da lane.
+        offset_y = 12 if tipo in ('ciclista-sexy', 'moto', 'scooter') else 0
+        offset_y = -10 if self.lane == 14 or self.lane == 13 or (self.lane == 12 and config.fase == 2) else offset_y
+        spawn_y = self.y - sprite_ref.height / 2 + offset_y
+
         if self.side == 'right':
             novo_carro = Carro(
                 sprite.Sprite(resource_path(f'images/vehicles/{tipo}_right.png'), 2),
                 self.x,
-                self.y - sprite_ref.height / 2,
+                spawn_y,
                 self.car_speed,
                 500
             )
 
             novo_carro.sprite.set_position(
                 novo_carro.x,
-                self.y - sprite_ref.height / 2 - 10
+                spawn_y
             )
 
         else:
             novo_carro = Carro(
                 sprite.Sprite(resource_path(f'images/vehicles/{tipo}_left.png'), 2),
                 self.x,
-                self.y - sprite_ref.height / 2,
+                spawn_y,
                 self.car_speed,
                 500
             )
 
             novo_carro.sprite.set_position(
                 novo_carro.x - sprite_ref.width,
-                self.y - sprite_ref.height / 2 - 10
+                spawn_y
             )
 
         self.carros.append(novo_carro)

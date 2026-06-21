@@ -296,7 +296,6 @@ class Player:
                 continue
             if self.get_lane() == prop.lane:
                 if self.current_sprite.collided(prop.sprite):
-                        print(f' POUSOU NO PROP! Lane: {prop.lane}, Prop posição: ({prop.x}, {prop.y})')
                         self.land_on_prop(prop)
                         self.last_prop = None
                         break    

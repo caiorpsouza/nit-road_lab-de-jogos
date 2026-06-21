@@ -18,7 +18,7 @@ class Buraco:
 def buraco_generator(num_de_buracos):
     buracos = []
     for _ in range(num_de_buracos):
-        novo_buraco = Buraco(sprites.buraco.width * random.randint(1, 14), (sprites.fase1.height/16 * random.randint(1,14))+10)
+        novo_buraco = Buraco(sprites.buraco.width * random.randint(6, 14), (sprites.fase1.height/16 * random.randint(5,12))+10)
         buracos.append(novo_buraco)
     
     return buracos
