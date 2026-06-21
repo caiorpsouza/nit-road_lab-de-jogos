@@ -7,7 +7,7 @@ import sounds
 
 def play() :
     sounds.tocar_menu()
-    botoes = [sprites.play_btn, sprites.diff_btn, sprites.scores_btn, sprites.quit_btn, sprites.volume_on, sprites.volume_off]
+    botoes = [sprites.play_btn, sprites.scores_btn, sprites.diff_btn, sprites.quit_btn]
     while True:
         
         for botao in botoes:
@@ -39,14 +39,10 @@ def play() :
         sprites.background_menu.draw()
         sprites.title.draw()
         sprites.play_btn.draw()
-        sprites.diff_btn.draw()
         sprites.scores_btn.draw()
+        sprites.diff_btn.draw()
         sprites.quit_btn.draw()
 
-        if config.volume:
-            sprites.volume_on.draw()
-        else:
-            sprites.volume_off.draw()
 
 
 

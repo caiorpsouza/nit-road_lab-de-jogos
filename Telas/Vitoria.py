@@ -11,7 +11,8 @@ def play():
     titulo = sprite.Sprite("images/title/voce_ganhou.png")
     titulo.set_position(config.janela.largura/2 - titulo.width/2, 150)
     sounds.parar_game()
-    sounds.winning_music.play()
+    if config.musica:
+        sounds.winning_music.play()
     
     tempo_formatado = config.formatar_tempo(config.tempos_fases['total'])
     nome = ""

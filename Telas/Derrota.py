@@ -8,7 +8,8 @@ def play():
     titulo = sprite.Sprite("images/title/game_over.png")
     titulo.set_position(config.janela.largura/2 - titulo.width/2, 150)
     sounds.parar_game()
-    sounds.death_music.play()
+    if config.musica:
+        sounds.death_music.play()
     while True:
         if config.janela.keyboard.key_down('ESC'):
             config.Tela = 'Menu'
