@@ -97,7 +97,7 @@ phases = [
             13: 'ground',14: 'ground',15: 'ground',16: 'ground',
         }
 
-    }
+    },
     
 ]
 
