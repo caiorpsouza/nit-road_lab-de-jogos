@@ -113,7 +113,8 @@ class Player:
 
         self.current_sprite.set_curr_frame(0)
         self.current_sprite.play()
-        self.jump_sound.play()  
+        if config.efeitos:
+            self.jump_sound.play()
 
         # Se se moveu enquanto estava em um prop, marca para não aplicar follow_prop este frame
         if self.current_prop:

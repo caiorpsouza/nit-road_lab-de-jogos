@@ -53,6 +53,8 @@ background_fase_selecao = sprite.Sprite(resource_path("images/backgrounds/backgr
 background_fase_selecao.set_position(0, 0)
 background_death = sprite.Sprite(resource_path("images/backgrounds/death-background.png"))
 background_death.set_position(0, 0)
+background_recordes = sprite.Sprite(resource_path("images/backgrounds/background-tarde.png"))
+background_recordes.set_position(0, 0)
 fase1 = sprite.Sprite(resource_path("images/backgrounds/fase1.png"))
 fase1.set_position(0, 0)
 fase2 = sprite.Sprite(resource_path("images/backgrounds/fase2.png"))

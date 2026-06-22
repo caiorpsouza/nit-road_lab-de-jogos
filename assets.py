@@ -12,3 +12,11 @@ def resource_path(caminho_relativo):
         base_path = os.path.dirname(__file__)
 
     return os.path.join(base_path, caminho_relativo)
+
+def save_path(filename):
+    if getattr(sys, "frozen", False):
+        base = os.path.dirname(sys.executable)
+    else:
+        base = os.path.dirname(__file__)
+
+    return os.path.join(base, filename)

@@ -100,7 +100,7 @@ def jogo():
         carros_atras = []
         carros_na_frente = []
         print(config.tempos_fases)
-        centro_player = player.player_y + player.current_sprite.height / 2
+        centro_player = player.current_sprite.y + player.current_sprite.height / 2
 
           
         for veiculo in veiculos:

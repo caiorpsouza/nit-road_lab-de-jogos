@@ -9,7 +9,7 @@ class CarSpawner:
     def __init__(self, lane, side, vehicles_types, velocity):
         self.lane = lane
         self.carros = []
-        self.car_speed = velocity
+        self.car_speed = velocity * config.multiplicador_dificuldade()
         self.side = side
         self.vehicles_types = vehicles_types
         self.spawn_clearance = max(sprites.VEHICLES[tipo].width for tipo in self.vehicles_types)
@@ -29,7 +29,7 @@ class CarSpawner:
         self.y = sprites.fase1.height / 16 * (self.lane - 1) - self.lane_offset
 
     def _next_spawn_cooldown(self):
-        return random.randint(30, 55) / 10
+        return (random.randint(30, 55) / 10) * config.multiplicador_spawn_dificuldade()
 
     def _pode_spawnar(self):
         if self.side == 'right':
@@ -71,7 +71,8 @@ class CarSpawner:
         sprite_ref = sprites.VEHICLES[tipo]
         # Isso aqui é uma porqueira que fiz para corrigir o bug do spawn de veículos na lane 14 e 13, que estavam aparecendo muito acima da lane.
         offset_y = 12 if tipo in ('ciclista-sexy', 'moto', 'scooter') else 0
-        offset_y = -10 if self.lane == 14 or self.lane == 13 or (self.lane == 12 and config.fase == 2) else offset_y
+        offset_y = -10 if (self.lane == 14 or self.lane == 13 or self.lane == 12) and config.fase == 2 else offset_y
+        offset_y = -10 if config.fase == 4 else offset_y
         spawn_y = self.y - sprite_ref.height / 2 + offset_y
 
         if self.side == 'right':
